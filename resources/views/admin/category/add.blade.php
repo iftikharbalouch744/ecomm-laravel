@@ -44,7 +44,7 @@
                   <input class="form-control" type="text" name="meta_keywords" placeholder="Enter Meta key">
                 </div>
                 <div class="form-group">
-                  <label class="control-label">Image</label>
+                  <label class="control-label">Image </label>
                   <input class="form-control" type="file" name="image">
                 </div>
             </div>
