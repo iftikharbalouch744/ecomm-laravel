@@ -26,4 +26,5 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     Route::get('/category', 'admin\CategoryController@index');
     Route::get('/AddCategory', 'admin\CategoryController@add');
     Route::post('/InsertCategory', 'admin\CategoryController@insert');
+    Route::get('/del-prod/{id}', 'admin\CategoryController@delproduct');
  });

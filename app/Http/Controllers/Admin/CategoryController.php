@@ -36,4 +36,8 @@ class CategoryController extends Controller
         $category->save();
         return redirect('/dashboard')->with('status','Category Added Successfully');
     }
+    public function delproduct($id){
+        Category::destroy($id);
+        return redirect('/dashboard')->with('status','Category Added Successfully');
+    }
 }
