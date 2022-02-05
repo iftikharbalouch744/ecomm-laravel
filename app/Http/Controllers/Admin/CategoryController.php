@@ -14,10 +14,10 @@ class CategoryController extends Controller
         return view('admin.category.index', compact('category'));
 
     }
-    public function Add(){
+    public function addcategory(){
         return view('admin.category.add');
     }
-    public function insert(Request $req){
+    public function insertcategory(Request $req){
         $category=new Category();
         if($req->hasFile('image')){
             $file=$req->file('image');
@@ -37,15 +37,15 @@ class CategoryController extends Controller
         $category->save();
         return redirect('/dashboard')->with('status','Category Added Successfully');
     }
-    public function delproduct($id){
+    public function delcategory($id){
         Category::destroy($id);
-        return redirect('/dashboard')->with('status','Category Added Successfully');
+        return redirect('/dashboard')->with('status','Category Deleted Successfully');
     }
-    public function editproduct($id){
+    public function editcategory($id){
         $category=Category::find($id);
         return view('admin.category.edit',compact('category'));
     }
-    public function updateproduct(Request $req, $id){
+    public function updatecategory(Request $req, $id){
         $category=Category::find($id);
         if($req->hasFile('image')){
             $path='assets/uploads/category/'.$category->image;

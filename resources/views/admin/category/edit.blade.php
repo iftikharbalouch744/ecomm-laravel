@@ -5,7 +5,7 @@
           <div class="tile">
             <h3 class="tile-title">Edit Category</h3>
             <div class="tile-body">
-              <form action="{{url('update-prod/'.$category->id)}}" method="POST" enctype="multipart/form-data">
+              <form action="{{url('update-category/'.$category->id)}}" method="POST" enctype="multipart/form-data">
                   @csrf
                   @method('PUT')
                 <div class="form-group">
