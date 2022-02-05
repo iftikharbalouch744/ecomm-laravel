@@ -29,4 +29,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     Route::get('/del-prod/{id}', 'admin\CategoryController@delproduct');
     Route::get('/edit-prod/{id}', 'admin\CategoryController@editproduct');
     Route::put('/update-prod/{id}', 'admin\CategoryController@updateproduct');
+    Route::get('/products', 'admin\ProductsController@index');
+    Route::get('/addproducts', 'admin\ProductsController@addproduct');
+    Route::post('/inset_product', 'admin\ProductsController@insetproduct');
  });
