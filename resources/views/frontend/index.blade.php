@@ -28,6 +28,23 @@
             @endforeach
         </div>
     </div>
+    <h2>Trending Categories</h2>
+    <div class="row">
+        <div class="owl-carousel featured-carousel owl-theme">
+            @foreach($trending_categories as $items)
+                <div class="item">
+                    <div class="card">
+                    <a href="{{url('/view-products/'.$items->slug)}}">
+                        <div class="card-body">
+                            <img src="{{asset('assets/uploads/category/'.$items->image)}}" style="width:200px; height:250px;" alt="image">
+                            <h3>{{$items->name}}</h3>
+                        </div>
+                    </a>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </div>
 </div>
 @endsection
 @section('scripts')

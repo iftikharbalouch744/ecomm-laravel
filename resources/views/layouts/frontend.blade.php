@@ -20,20 +20,27 @@
      <link rel="stylesheet" type="text/css" href="{{asset('frontend/css/owl.theme.default.min.css')}}">
      <!-- Main CSS-->
      <link rel="stylesheet" type="text/css" href="{{asset('frontend/boostrap.min.css')}}">
+     <link rel="stylesheet" type="text/css" href="{{asset('frontend/css/custom.css')}}">
     <!-- Font-icon css-->
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css">
+    <style>
+        a{
+            text-decoration:none;
+            color:black;
+        }
+    </style>
 </head>
 <body >
 
 <div class="content">
     @yield('content')
 </div>
-
 <!-- Essential javascripts for application to work-->
 <script src="{{asset('frontend/js/jquery-3.6.0.min.js')}}"></script>
 <script src="{{asset('frontend/js/owl.carousel.min.js')}}"></script>
     <script src="{{asset('frontend/js/bootstrap.min.bundel.js')}}"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="{{asset('frontend/js/custom.js')}}"></script>
 
     @if(session('status'))
         <script>
