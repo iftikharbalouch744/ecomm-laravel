@@ -29,6 +29,7 @@ Route::get('/cart','Frontend\CartController@cartview');
 Route::post('/delete-cart-item','Frontend\CartController@delcartitem');
 Route::post('/update-cart-qty','Frontend\CartController@update_cart_qty');
 Route::get('/checkout', 'Frontend\CheckoutController@index');
+Route::post('/place-order', 'Frontend\CheckoutController@place_order');
 });
 
  Route::middleware(['auth','isAdmin'])->group(function(){

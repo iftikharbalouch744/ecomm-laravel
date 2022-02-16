@@ -12,14 +12,24 @@ Cart Items list
 </div>
 </div>
 <div class="container">
+    @if($cartitems->count() == 0)
     <div class="row">
          <div class="card">
             <div class="card-body">
-                @php $total=0;
-                     $check='false';
-                @endphp
+                <h2>Cart is Empty</h2>
+                <a href="{{ url('categories') }}" class="btn btn-outline-primary checkoutcart me-3 float-end">Click here go to Shoping</a>
+            </div>
+        </div>
+    </div>
+    @else
+    <div class="row">
+         <div class="card">
+            <div class="card-body">
+                    @php $total=0;
+                        $check='false';
+                    @endphp
             @foreach($cartitems as $item)
-            @php $check='true'; @endphp
+                 @php $check='true'; @endphp
                 <div class="row form-data">
                     <div class="col-md-2 border-right">
                         <input type="hidden" class="from-control prod_id" value="{{$item->prod_id}}">
@@ -32,28 +42,33 @@ Cart Items list
                         <span>RS {{$item->products->original_price}} /-</span>
                     </div>
                     <div class="col-md-2">
+                    @if($item->products->qty >=  $item->prod_qty)
                         <div class="input-group text-center mb-3">
                            <!-- <button class="input-group-text decrement-btn">-</button>-->
                             <input type="number" value='{{$item->prod_qty}}' class="form-control qty-input changeqty">
                             <input type="hidden" value='' class="form-control hide-input">
                           <!--  <button class="input-group-text increment-btn">+</button>-->
                         </div>
+                        @php if($check=='true')
+                        $total+=$item->prod_qty * $item->products->original_price;
+                        @endphp
+                    @else
+                        <h3>Out of Stock</h3>
+                    @endif
                     </div>
                     <div class="col-md-2">
                         <button class="btn btn-outline-warning btn-sm delete-cart-item">Remove</button>
                     </div>
                 </div>
                 <hr/>
-                @php if($check=='true')
-                        $total+=$item->prod_qty * $item->products->original_price;
-                        @endphp
-                @endforeach
-                    <a href="{{ url('checkout') }}" class="btn btn-outline-success checkoutcart me-3 float-end">Click here to Checkout</a>
-                    <lable>
-
-                        Total Price:{{$total}}
-                    </lable>
+            @endforeach
+                <a href="{{ url('checkout') }}" class="btn btn-outline-success checkoutcart me-3 float-end">Click here to Checkout</a>
+                <lable>
+                Total Price:{{$total}}
+                </lable>
             </div>
+        </div>
     </div>
+    @endif
 </div>
 
