@@ -24,12 +24,15 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\Frontend\FrontendController::class, 'index'])->name('home');
 Route::post('/add-to-cart','Frontend\CartController@index');
+
 Route::middleware(['auth'])->group(function(){
 Route::get('/cart','Frontend\CartController@cartview');
 Route::post('/delete-cart-item','Frontend\CartController@delcartitem');
 Route::post('/update-cart-qty','Frontend\CartController@update_cart_qty');
 Route::get('/checkout', 'Frontend\CheckoutController@index');
 Route::post('/place-order', 'Frontend\CheckoutController@place_order');
+Route::get('/my-orders', 'Frontend\UserController@index');
+Route::get('/my-orders/{id}', 'Frontend\UserController@view');
 });
 
  Route::middleware(['auth','isAdmin'])->group(function(){

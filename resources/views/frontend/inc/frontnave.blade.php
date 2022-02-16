@@ -39,9 +39,13 @@
                         Profile
                      </a>
                     </li>
+                    <li><a class="dropdown-item" href="{{url('my-orders')}}">
+                        Orders
+                     </a>
+                    </li>
                     @if(Auth::user()->role_as == '1')
                     <li><a class="dropdown-item" href="/dashboard">
-                        Admin Dashboard
+                        Admin
                      </a>
                     </li>
                         @endif
