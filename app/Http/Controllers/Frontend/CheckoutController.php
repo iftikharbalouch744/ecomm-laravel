@@ -74,10 +74,12 @@ class CheckoutController extends Controller
                     'prod_sub_total'=>$items->prod_qty*$items->products->original_price,
                 ]);
             }
-
-
             Cart::destroy($cartItems);
             return redirect('/')->with('status','Your order done successfully..');
-
-     }
+    }
+    public function count_orders(){
+        $ordercount=Order::where('user_id',Auth::id())->count();
+        //print_r( $ordercount); exit;
+        return response()->json(['count'=>$ordercount]);
+    }
 }

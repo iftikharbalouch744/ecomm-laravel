@@ -16,7 +16,10 @@
           <a class="nav-link" href="#">Pricing</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{url('/cart')}}">Cart</a>
+          <a class="nav-link" href="{{url('/cart')}}">Cart&nbsp;&nbsp;<span class="badge badge-pill bg-success cart-count">0</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{url('/wishlist')}}">Wishlist&nbsp;&nbsp;<span class="badge badge-pill bg-primary wishlist-count">0</span></a>
         </li>
          @guest
          @if (Route::has('login'))
@@ -39,8 +42,8 @@
                         Profile
                      </a>
                     </li>
-                    <li><a class="dropdown-item" href="{{url('my-orders')}}">
-                        Orders
+                    <li><a class="dropdown-item" href="{{ url('my-orders') }}">
+                    Orders&nbsp;&nbsp;<span class="badge badge-pill bg-success orders-count">0</span>
                      </a>
                     </li>
                     @if(Auth::user()->role_as == '1')

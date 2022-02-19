@@ -52,10 +52,10 @@
                                 <span class="me-3">Old Price: RS <s>{{$products->selling_price}}</s></span>
                                 <hr/>
                                 @if($products->qty > 0)
-                                <button class="btn btn-outline-primary me-3 float-start">Add to Wishlist <i class="fa fs-heart"></i></button>
+                                <button class="btn btn-outline-primary me-3 float-start addtowishlist">Add to Wishlist <i class="fa fs-heart"></i></button>
                                 <button class="btn btn-outline-success addtocart me-3 float-end">Add to Cart <i class="fa fs-cart"></i></button>
                                 @else
-                                <button class="btn btn-outline-primary me-3 float-end">Add to Wishlist <i class="fa fs-heart"></i></button>
+                                <button class="btn btn-outline-primary me-3 float-end addtowishlist">Add to Wishlist <i class="fa fs-heart"></i></button>
                                 @endif
 
                             </div>

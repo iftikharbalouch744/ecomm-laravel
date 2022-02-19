@@ -11,6 +11,7 @@
         <li><a class="app-menu__item {{ Request::is('AddCategory') ? 'active':'';}}" href="{{url('AddCategory')}}"><i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">Add Category</span></a></li>
         <li><a class="app-menu__item {{ Request::is('products') ? 'active':'';}}"  href="{{url('products')}}"><i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">Products</span></a></li>
         <li><a class="app-menu__item {{ Request::is('addproducts') ? 'active':'';}}" href="{{url('addproducts')}}"><i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">Add Products</span></a></li>
+        <li><a class="app-menu__item {{ Request::is('orders') ? 'active':'';}}" href="{{url('orders')}}"><i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">Orders</span></a></li>
         <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-laptop"></i><span class="app-menu__label">UI Elements</span><i class="treeview-indicator fa fa-angle-right"></i></a>
           <ul class="treeview-menu">
             <li><a class="treeview-item" href="bootstrap-components.html"><i class="icon fa fa-circle-o"></i> Bootstrap Elements</a></li>

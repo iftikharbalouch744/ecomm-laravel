@@ -8,7 +8,11 @@
 <?php
 $total_amount=0;
 ?>
-
+<style>
+    span{
+        color:red;
+    }
+</style>
 
 <div class="py-3 mb-4 shadow-4sm bg-warning boarder-top">
     <div class="container">
@@ -30,43 +34,53 @@ $total_amount=0;
                 <div class="row" class="checkout-form">
                     <div class="col-md-6">
                         <lable>First Name</lable>
-                        <input type="text" name="f_name" value="{{$count_int == '0' ? '' :$user_data->F_Name}}" class="form-control form-control-sm" palceholder="First Name">
+                        <input type="text" name="f_name" value="{{$count_int == '0' ? '' :$user_data->F_Name}}" class="form-control form-control-sm firstname" palceholder="First Name">
+                        <span id="fname_error"></span>
                     </div>
                     <div class="col-md-6">
                         <lable>Last Name</lable>
-                        <input type="text" name="l_name" value="{{$count_int == '0' ? '' :$user_data->L_Name}}" class="form-control form-control-sm" palceholder="Last Name">
+                        <input type="text" name="l_name" value="{{$count_int == '0' ? '' :$user_data->L_Name}}" class="form-control form-control-sm lastname" palceholder="Last Name">
+                        <span id="lname_error"></span>
                     </div>
                     <div class="col-md-6">
                         <lable>Email</lable>
-                        <input type="email" name="email" value="{{$count_int == '0' ? '' : $user_data->Email}}" class="form-control form-control-sm" palceholder="Enater Email">
+                        <input type="email" name="email" value="{{$count_int == '0' ? '' : $user_data->Email}}" class="form-control form-control-sm email" palceholder="Enater Email">
+                        <span id="email_error"></span>
                     </div>
                     <div class="col-md-6">
                         <lable>Phone No.</lable>
-                        <input type="text" name="phone" value="{{$count_int == '0' ? '' :$user_data->Phone}}" class="form-control form-control-sm" palceholder="Enter Phone No.">
+                        <input type="text" name="phone" value="{{$count_int == '0' ? '' :$user_data->Phone}}" class="form-control form-control-sm phone" palceholder="Enter Phone No.">
+                        <span id="phone_error"></span>
                     </div>
                     <div class="col-md-6">
                         <lable>City</lable>
-                        <input type="text" name="city" value="{{$count_int == '0' ? '' :$user_data->city}}" class="form-control form-control-sm" palceholder="Entry City">
+                        <input type="text" name="city" value="{{$count_int == '0' ? '' :$user_data->city}}" class="form-control form-control-sm city" palceholder="Entry City">
+                        <span id="city_error"></span>
                     </div>
                     <div class="col-md-6">
                         <lable>State</lable>
-                        <input type="text" name="state" value="{{$count_int == '0' ? '' :$user_data->state}}" class="form-control form-control-sm" palceholder="Enter State">
+                        <input type="text" name="state" value="{{$count_int == '0' ? '' :$user_data->state}}" class="form-control form-control-sm state" palceholder="Enter State">
+                        <span id="state_error"></span>
                     </div>
                     <div class="col-md-6">
                         <lable>Country</lable>
-                        <input type="text" name="country" value="{{$count_int == '0' ? '' :$user_data->country}}" class="form-control form-control-sm" palceholder="Enter Country">
+                        <input type="text" name="country" value="{{$count_int == '0' ? '' :$user_data->country}}" class="form-control form-control-sm country" palceholder="Enter Country">
+                        <span id="country_error"></span>
                     </div>
                     <div class="col-md-6">
                         <lable>Pin Code</lable>
-                        <input type="text" name="pincode" value="{{$count_int == '0' ? '' :$user_data->pincode}}" class="form-control form-control-sm" palceholder="Pin Code">
+                        <input type="text" name="pincode" value="{{$count_int == '0' ? '' :$user_data->pincode}}" class="form-control form-control- pincode" palceholder="Pin Code">
+                        <span id="pincode_error"></span>
                     </div>
                     <div class="col-md-6">
                         <lable>Adrress 1</lable>
-                        <input type="text" name="address1" value="{{$count_int == '0' ? '' :$user_data->address1}}" class="form-control form-control-sm" palceholder="Enter Address">
+                        <input type="text" name="address1" value="{{$count_int == '0' ? '' :$user_data->address1}}" class="form-control form-control-sm address1" palceholder="Enter Address">
+                        <span id="address1_error"></span>
                     </div>
                     <div class="col-md-6">
                         <lable>Address 2</lable>
-                        <input type="text" name="address2" value="{{$count_int == '0' ? '' :$user_data->address2}}" class="form-control form-control-sm" palceholder="Enter Address">
+                        <input type="text" name="address2" value="{{$count_int == '0' ? '' :$user_data->address2}}" class="form-control form-control-sm address2" palceholder="Enter Address">
+                        <span id="address2_error"></span>
                     </div>
                     <div class="col-md-12">
                         <lable>Message</lable>
@@ -117,13 +131,15 @@ $total_amount=0;
                     @endforeach
                     <tr>
                         <td colspan="6">
-                            <input type="text" name="totalamount" value="{{$total_amount}}" readonly/>
-                            Total: {{$total_amount}}
+                            <input type="hidden" name="totalamount" value="{{$total_amount}}" readonly/>
+                            <strong>Total: <span class="float-end">{{$total_amount}} /-</span></strong>
                         </td>
                     </tr>
                 </tbody>
                 </table>
-                <input type="submit" class="btn btn-outline-success btn-sm float-end" value="Palce Order">
+                <input type="submit" class="btn btn-success btn-sm  w-100" value="Palce Order | Cash on Delivery">
+                <hr/>
+                <button type="button" class="btn btn-primary btn-sm  w-100 razorpay_btn">Palce Order | With Razor Pay</button>
                 </div>
             </div>
             @endif
