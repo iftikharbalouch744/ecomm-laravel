@@ -22,7 +22,7 @@ $total_amount=0;
 </div>
 </div>
 <div class="container">
-<form action="{{url('place-order')}}" method="POST">
+<form id="checkout_form" action="{{url('place-order')}}" method="POST">
     @csrf
     <div class="row">
         <div class="col-md-7">
@@ -81,6 +81,7 @@ $total_amount=0;
                         <lable>Address 2</lable>
                         <input type="text" name="address2" value="{{$count_int == '0' ? '' :$user_data->address2}}" class="form-control form-control-sm address2" palceholder="Enter Address">
                         <span id="address2_error"></span>
+                        <input type="hidden" name="payment_method"  value="COD">
                     </div>
                     <div class="col-md-12">
                         <lable>Message</lable>
@@ -148,4 +149,7 @@ $total_amount=0;
 </div>
 <form>
 </div>
+@endsection
+@section('scripts')
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 @endsection

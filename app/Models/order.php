@@ -25,6 +25,8 @@ class order extends Model
         'message',
         'tracking_no',
         'order_amount',
+        'payment_method',
+        'payment_id',
     ];
     public function orderItems(){
         return $this->hasMany(orderitems::class);

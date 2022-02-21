@@ -59,9 +59,13 @@ class CheckoutController extends Controller
          $order->state=$request->input('state');
          $order->country=$request->input('country');
          $order->pincode=$request->input('pincode');
+         $order->payment_method=$request->input('payment_method');
+         $order->payment_id=$request->input('payment_id');
          $order->message=$request->input('message');
          $order->tracking_no='order'.rand(1111,9999);
          $order->order_amount=$request->input('totalamount');
+        //  echo "<pre>";
+        //  print_r($order); exit;
          $order->save();
         $order_status=true;
             $cartItems=Cart::where('user_id', Auth::id())->get();
@@ -75,11 +79,49 @@ class CheckoutController extends Controller
                 ]);
             }
             Cart::destroy($cartItems);
+            if($request->input('payment_method')=='Paid by Razorpay'){
+                return response()->json(['status'=>'Your order done successfully..']);
+            }
             return redirect('/')->with('status','Your order done successfully..');
     }
     public function count_orders(){
         $ordercount=Order::where('user_id',Auth::id())->count();
         //print_r( $ordercount); exit;
         return response()->json(['count'=>$ordercount]);
+    }
+    public function razorpaycheck(Request $request){
+        $cartItems=Cart::where('user_id', Auth::id())->get();
+        // echo "<pre>";
+        // print_r($cartItems); exit;
+        $total_price=0;
+        foreach($cartItems as $item){
+            $total_price+= $item->products->original_price * $item->prod_qty;
+        }
+
+        $firstname=$request->input('firstname');
+        $lastname=$request->input('lastname');
+        $email=$request->input('email');
+        $phone=$request->input('$phone');
+        $city=$request->input('city');
+        $state=$request->input('state');
+        $country=$request->input('country');
+        $address1=$request->input('address1');
+        $address2=$request->input('address2');
+        $pincode=$request->input('pincode');
+
+
+        return response()->json([
+                'firstname'=>$firstname,
+                 'lastname'=>$lastname,
+                 'email'=>$email,
+                 'phone'=>$phone,
+                 'city'=>$city,
+                 'state'=>$state,
+                 'country'=>$country,
+                 'address1'=>$address1,
+                 'address2'=>$address2,
+                 'pincode'=>$pincode,
+                 'total_price'=>$total_price
+        ]);
     }
 }

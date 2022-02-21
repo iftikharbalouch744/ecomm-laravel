@@ -39,6 +39,7 @@ Route::get('/my-orders/{id}', 'Frontend\UserController@view');
 Route::get('/load-cart-data', 'Frontend\CartController@count');
 Route::get('/load-orders-data', 'Frontend\CheckoutController@count_orders');
 Route::get('/load-wishlist-data', 'Frontend\WishlistController@count_wishlist');
+Route::post('/proceed-to-pay', 'Frontend\CheckoutController@razorpaycheck');
 });
 
  Route::middleware(['auth','isAdmin'])->group(function(){
