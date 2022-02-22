@@ -12,6 +12,7 @@ $(document).ready(function(){
         var address1=$('.address1').val();
         var address2=$('.address2').val();
         var pincode=$('.pincode').val();
+        var message=$('message').val();
         if(!firstname){
             fname_error='First Name Required !!';
             $('#fname_error').html('');
@@ -103,7 +104,8 @@ $(document).ready(function(){
                  'country':country,
                  'address1':address1,
                  'address2':address2,
-                 'pincode':pincode
+                 'pincode':pincode,
+                 'message':message
             }
             $.ajaxSetup({
                 headers: {
@@ -116,9 +118,7 @@ $(document).ready(function(){
                 data:data,
                 dataType: "json",
                 success: function(response){
-
-
-                   alert(response.total_price);
+                   //alert(response.total_price);
                    var options = {
                     "key": "rzp_test_GJYrMQ06sPmXqj",    // Enter the Key ID generated from the Dashboard
                     "amount": 1*100,                    // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
@@ -128,7 +128,7 @@ $(document).ready(function(){
                     "image": "https://example.com/your_logo",
                    // "order_id": "order_9A33XWu170gUtm", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
                     "handler": function (responsea){
-                        alert(responsea.razorpay_payment_id);
+                      //  alert(responsea.razorpay_payment_id);
                         $.ajax({
                             method:"POST",
                             url:"/place-order",
@@ -145,10 +145,12 @@ $(document).ready(function(){
                                 'pincode':pincode,
                                 'totalamount':response.total_price,
                                 'payment_method':'Paid by Razorpay',
-                                'payment_id':responsea.razorpay_payment_id
+                                'payment_id':responsea.razorpay_payment_id,
+                                'message':message
                             },
                             success:function(responseb){
-                                alert(responseb.status);
+                                window.location.href="/my-orders";
+                                swal(responseb.status);
                             }
                         });
                     },
