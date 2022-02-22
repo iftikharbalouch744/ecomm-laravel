@@ -79,7 +79,7 @@ class CheckoutController extends Controller
                 ]);
             }
             Cart::destroy($cartItems);
-            if($request->input('payment_method')=='Paid by Razorpay'){
+            if($request->input('payment_method')=='Paid by Razorpay' || $request->input('payment_method')=='Paid by PayPal'){
                 return response()->json(['status'=>'Your order done successfully..']);
             }
             return redirect('/')->with('status','Your order done successfully..');

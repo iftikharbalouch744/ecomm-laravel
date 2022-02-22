@@ -85,7 +85,7 @@ $total_amount=0;
                     </div>
                     <div class="col-md-12">
                         <lable>Message</lable>
-                        <textArea type="text" name="message" class="form-control form-control-sm" palceholder="Your Message"></textArea>
+                        <textArea type="text" name="message" class="form-control form-control-sm message" palceholder="Your Message"></textArea>
                     </div>
                     <div class="col-md-12">
 
@@ -141,6 +141,7 @@ $total_amount=0;
                 <input type="submit" class="btn btn-success btn-sm  w-100" value="Palce Order | Cash on Delivery">
                 <hr/>
                 <button type="button" class="btn btn-primary btn-sm  w-100 razorpay_btn">Palce Order | With Razor Pay</button>
+                <div id="paypal-button-container"></div>
                 </div>
             </div>
             @endif
@@ -152,4 +153,93 @@ $total_amount=0;
 @endsection
 @section('scripts')
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script src="https://www.paypal.com/sdk/js?client-id=AXkTFbjCnEq9SyPmubgwrKVhnD2Fw7ZqKHz6S0UzKYoFzjYv5n7hQMHtmQaOolGVMtUDaaxd1xkMqoOh&currency=USD"></script>
+<script src="{{asset('frontend/js/jquery-3.6.0.min.js')}}"></script>
+<script>
+
+paypal.Buttons({
+
+
+  // Sets up the transaction when a payment button is clicked
+
+  createOrder: function(data, actions) {
+
+    return actions.order.create({
+
+      purchase_units: [{
+
+        amount: {
+
+          value: '{{$total_amount}}' // Can reference variables or functions. Example: `value: document.getElementById('...').value`
+
+        }
+
+      }]
+
+    });
+
+  },
+
+
+  // Finalize the transaction after payer approval
+
+  onApprove: function(data, actions) {
+
+    return actions.order.capture().then(function(orderData) {
+
+      // Successful capture! For dev/demo purposes:
+
+           console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+
+           var transaction = orderData.purchase_units[0].payments.captures[0];
+debugger
+           alert('Transaction '+ transaction.status + ': ' + transaction.id + '\n\nSee console for all available details');
+        var firstname = $('.firstname').val();
+        var lastname=$('.lastname').val();
+        var email=$('.email').val();
+        var phone=$('.phone').val();
+        var city=$('.city').val();
+        var state=$('.state').val();
+        var country=$('.country').val();
+        var address1=$('.address1').val();
+        var address2=$('.address2').val();
+        var pincode=$('.pincode').val();
+        var message=$('message').val();
+        $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+        $.ajax({
+            method:"POST",
+            url:"/place-order",
+            data:{
+                'f_name':firstname,
+                'l_name':lastname,
+                'email':email,
+                'phone':phone,
+                'city':city,
+                'state':state,
+                'country':country,
+                'address1':address1,
+                'address2':address2,
+                'pincode':pincode,
+                'totalamount':12,//response.total_price,
+                'payment_method':'Paid by PayPal',
+                'payment_id':orderData.id,
+                'message':message
+                },
+                success:function(response){
+                swal(response.status);
+                window.location.href="/my-orders";
+                 }
+            });
+    });
+
+  }
+
+}).render('#paypal-button-container');
+
+
+</script>
 @endsection
