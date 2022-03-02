@@ -132,7 +132,7 @@ $total_amount=0;
                     @endforeach
                     <tr>
                         <td colspan="6">
-                            <input type="hidden" name="totalamount" value="{{$total_amount}}" readonly/>
+                            <input type="hidden" name="totalamount" value="{{$total_amount}}" class="amount" readonly/>
                             <strong>Total: <span class="float-end">{{$total_amount}} /-</span></strong>
                         </td>
                     </tr>
@@ -141,6 +141,7 @@ $total_amount=0;
                 <input type="submit" class="btn btn-success btn-sm  w-100" value="Palce Order | Cash on Delivery">
                 <hr/>
                 <button type="button" class="btn btn-primary btn-sm  w-100 razorpay_btn">Palce Order | With Razor Pay</button>
+                <hr/>
                 <div id="paypal-button-container"></div>
                 </div>
             </div>
@@ -192,8 +193,7 @@ paypal.Buttons({
            console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
 
            var transaction = orderData.purchase_units[0].payments.captures[0];
-debugger
-           alert('Transaction '+ transaction.status + ': ' + transaction.id + '\n\nSee console for all available details');
+          // alert('Transaction '+ transaction.status + ': ' + transaction.id + '\n\nSee console for all available details');
         var firstname = $('.firstname').val();
         var lastname=$('.lastname').val();
         var email=$('.email').val();
@@ -204,7 +204,8 @@ debugger
         var address1=$('.address1').val();
         var address2=$('.address2').val();
         var pincode=$('.pincode').val();
-        var message=$('message').val();
+        var message=$('.message').val();
+        var amount=$('.amount').val();
         $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -224,7 +225,7 @@ debugger
                 'address1':address1,
                 'address2':address2,
                 'pincode':pincode,
-                'totalamount':12,//response.total_price,
+                'totalamount':amount,
                 'payment_method':'Paid by PayPal',
                 'payment_id':orderData.id,
                 'message':message
