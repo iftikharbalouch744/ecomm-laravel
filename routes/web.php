@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
+
+
 Route::get('/', [App\Http\Controllers\Frontend\FrontendController::class, 'index']);
 Route::get('/categories', [App\Http\Controllers\Frontend\FrontendController::class, 'category']);
 Route::get('/view-products/{slug}', [App\Http\Controllers\Frontend\FrontendController::class, 'view_products']);
@@ -26,6 +28,8 @@ Route::post('/add-to-cart','Frontend\CartController@index');
 Route::get('/wishlist','Frontend\WishlistController@index');
 Route::post('/wishlistadd','Frontend\WishlistController@addtowishlist');
 Route::post('/delete-wishlist-item','Frontend\WishlistController@delete_wishlist_item');
+Route::get('/test','testController@sum');
+Route::post('/test','testController@save');
 
 Route::middleware(['auth'])->group(function(){
 Route::get('/cart','Frontend\CartController@cartview');
