@@ -65,3 +65,7 @@ Route::post('/proceed-to-pay', 'Frontend\CheckoutController@razorpaycheck');
     Route::post('/update/{id}', 'admin\OrderController@update_order');
 
  });
+
+ Route::get('/api/products', 'Api\FrontendController@index');
+
+ Route::get('/send-notification','TestEnrollmentController@sendTestNotification');
