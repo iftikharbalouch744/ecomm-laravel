@@ -17,3 +17,11 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+<<<<<<< Updated upstream
+=======
+
+Route::get('/trendingProducts', 'Api\RecordController@list');
+
+
+Route::get('/invite', 'Api\RecordController@inviteuseremail');
+>>>>>>> Stashed changes
